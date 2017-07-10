@@ -55,6 +55,7 @@ call vundle#begin()
     Plugin 'jiangmiao/auto-pairs'
     Plugin 'Quramy/tsuquyomi'
     Plugin 'scrooloose/nerdcommenter'
+    Plugin 'terryma/vim-multiple-cursors'
     
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -210,3 +211,10 @@ let g:NERDCommentEmptyLines = 1
 let g:NERDTrimTrailingWhitespace = 1
 
 " -----------------------------------------------------------------
+
+" ---------------------- Vim-multiple-cursors ---------------------
+"  `Ctrl + n` to highlight curren word or highlight part of word then
+"  `Ctrl + n` to highlight next match. `Ctrl + p` to unselect and move 
+"  back to previous one. 
+"  `Ctrl + x` to remove current virtual cursor and skip to next one
+"  -----------------------------------------------------------------
