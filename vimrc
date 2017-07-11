@@ -1,9 +1,5 @@
 
 " ----- Vim General Settings -------------------------------------
-" Enable filetype dection, filetype specific scripts(ftplugins) filetype indent scripts
-set smartindent
-set autoindent
-set cinkeys=0{,0},:,0#,!,!^F
 
 " Vim theming
 "let g:molokai_original = 1
@@ -12,6 +8,11 @@ colorscheme monokai
 " To print hardcopy with line numbers
 set printoptions=number:y
 
+" Enable filetype dection, filetype specific scripts(ftplugins) filetype indent scripts
+set smartindent
+set autoindent
+set cinkeys=0{,0},:,0#,!,!^F
+
 " Set tab stop
 " https://stackoverflow.com/questions/2054627/how-do-i-change-tab-size-in-vim
 set tabstop=4
@@ -19,6 +20,21 @@ set shiftwidth=4
 set expandtab
 
 set number
+
+" Markdown syntax for *.md (Vim default setting just for README.md)
+augroup markdown
+
+    " remove previous autocmds
+     autocmd!
+
+    " Custom highlighting for headers
+    autocmd FileType markdown highlight Title cterm=bold ctermfg=darkblue
+
+    " set every new or read *.md buffer to use the markdown filetype 
+    autocmd BufRead,BufNew *.md setf markdown
+
+augroup END
+
 
 " |--------------- Mapping -----------------------------------
     imap jj <ESC>
@@ -56,6 +72,14 @@ call vundle#begin()
     Plugin 'Quramy/tsuquyomi'
     Plugin 'scrooloose/nerdcommenter'
     Plugin 'terryma/vim-multiple-cursors'
+    
+    " Plugins using for markdown - ref:
+    " https://www.swamphogg.com/2015/vim-setup/
+    Plugin 'junegunn/goyo.vim'
+    Plugin 'godlygeek/tabular'
+    Plugin 'plasticboy/vim-markdown'
+    Plugin 'reedes/vim-pencil'
+
     
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -213,8 +237,19 @@ let g:NERDTrimTrailingWhitespace = 1
 " -----------------------------------------------------------------
 
 " ---------------------- Vim-multiple-cursors ---------------------
-"  `Ctrl + n` to highlight curren word or highlight part of word then
-"  `Ctrl + n` to highlight next match. `Ctrl + p` to unselect and move 
+"  `Ctrl + h` to highlight curren word or highlight part of word then
+"  `Ctrl + h` to highlight next match. `Ctrl + p` to unselect and move 
 "  back to previous one. 
 "  `Ctrl + x` to remove current virtual cursor and skip to next one
+" Remap `Ctrl + n` to `Ctrl + h` to avoid override `Ctrl + n` for NERDTree
+
+" Step 1: Turn off the default mapping
+let g:multi_cursor_use_default_mapping=0
+
+" Step 2: Remap the default mapping
+let g:multi_cursor_next_key='<C-h>'
+let g:multi_cursor_prev_key='<C-p>'
+let g:multi_cursor_skip_key='<C-x>'
+let g:multi_cursor_quit_key='<Esc>'
+
 "  -----------------------------------------------------------------
