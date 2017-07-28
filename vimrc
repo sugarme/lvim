@@ -253,3 +253,9 @@ let g:multi_cursor_skip_key='<C-x>'
 let g:multi_cursor_quit_key='<Esc>'
 
 "  -----------------------------------------------------------------
+"  ---------------------- Vim-markdown -----------------------------
+"
+"  Disable folding
+let g:vim_markdown_folding_disabled = 1
+
+" -------------------------------------------------------------------
