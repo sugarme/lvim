@@ -13,10 +13,18 @@ set smartindent
 set autoindent
 set cinkeys=0{,0},:,0#,!,!^F
 
+" Set backpsace works as other editors though not recommended. 
+" ref: https://vi.stackexchange.com/questions/2162/why-doesnt-the-backspace-key-work-in-insert-mode
+set backspace=indent,eol,start
+
 " Set tab stop
 " https://stackoverflow.com/questions/2054627/how-do-i-change-tab-size-in-vim
-set tabstop=4
-set shiftwidth=4
+" NOTES: Reason to set tabstop to 2 spaces because angular-cli default tabstop
+" set to 2. Maybe change in next angular-cli (version 2.0)?
+" Ref: https://github.com/angular/angular-cli/issues/6272
+" Ref: https://github.com/angular/angular-cli/issues/1252
+set tabstop=2
+set shiftwidth=2
 set expandtab
 
 set number
