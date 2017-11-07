@@ -1,5 +1,6 @@
 {
   "dependencies": {
     "standard-version": "^4.2.0"
-  }
+  },
+  "version": null
 }
