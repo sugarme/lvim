@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_cnt =4
 let g:netrw_dirhist_1='/home/sugarme'
 let g:netrw_dirhist_2='/home/sugarme/go-projects/src/github.com/sugarme/go-hello'
 let g:netrw_dirhist_3='/home/sugarme'
+let g:netrw_dirhist_4='/home/sugarme/spacenow/spacenow_client_v5'

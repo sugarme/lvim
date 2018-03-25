@@ -13,7 +13,7 @@ set smartindent
 set autoindent
 set cinkeys=0{,0},:,0#,!,!^F
 
-" Set backpsace works as other editors though not recommended. 
+" Set backpsace works as other editors though not recommended.
 " ref: https://vi.stackexchange.com/questions/2162/why-doesnt-the-backspace-key-work-in-insert-mode
 set backspace=indent,eol,start
 
@@ -38,7 +38,7 @@ augroup markdown
     " Custom highlighting for headers
     autocmd FileType markdown highlight Title cterm=bold ctermfg=darkblue
 
-    " set every new or read *.md buffer to use the markdown filetype 
+    " set every new or read *.md buffer to use the markdown filetype
     autocmd BufRead,BufNew *.md setf markdown
 
 augroup END
@@ -59,13 +59,13 @@ filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
 
 call vundle#begin()
-	" let Vundle manage Vundle, required
-	Plugin 'VundleVim/Vundle.vim'
-	
+    " let Vundle manage Vundle, required
+    Plugin 'VundleVim/Vundle.vim'
+
     Plugin 'Shougo/vimproc.vim'
-	Plugin 'leafgarland/typescript-vim'
-	Plugin 'Quramy/vim-js-pretty-template'
-	Plugin 'alvan/vim-closetag'
+    Plugin 'leafgarland/typescript-vim'
+    Plugin 'Quramy/vim-js-pretty-template'
+    Plugin 'alvan/vim-closetag'
     Plugin 'itchyny/lightline.vim'
     " Plugin 'shougo/neocomplete.vim'
     Plugin 'Valloric/YouCompleteMe'
@@ -80,21 +80,33 @@ call vundle#begin()
     Plugin 'Quramy/tsuquyomi'
     Plugin 'scrooloose/nerdcommenter'
     Plugin 'terryma/vim-multiple-cursors'
-    
+
     " Plugins using for markdown - ref:
     " https://www.swamphogg.com/2015/vim-setup/
     Plugin 'junegunn/goyo.vim'
     Plugin 'godlygeek/tabular'
     Plugin 'plasticboy/vim-markdown'
     Plugin 'reedes/vim-pencil'
+    Plugin 'jalvesaq/Nvim-R'
 
-    
+    " vim-codefmt and its dependencies
+    Plugin 'google/vim-maktaba'
+    Plugin 'google/vim-codefmt'
+    Plugin 'google/vim-glaive'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
-syntax on                    " required 
-
+syntax on                    " required
 " --------------- End vundle plugins ---------------------
+
+" ------- Dependent packages for vim-codefmt -------------------------
+" the glaive#Install() should go after the "call vundle#end()"
+call glaive#Install()
+" Optional: Enable codefmt's default mappings on the <Leader>= prefix.
+Glaive codefmt plugin[mappings]
+" Glaive codefmt google_java_executable="java -jar /path/to/google-java-format-VERSION-all-deps.jar"
+" -------------------------------------------------------------------
 
 " ---------------- Vim-go plugin ------------------------
 let g:go_disable_autoinstall = 0
@@ -104,10 +116,10 @@ let g:go_disable_autoinstall = 0
 " --------------- Typescript-vim plugin -----------------
 " Compiler settings
 " To run the compiler, enter `:make`, this will run `tsc`
-" against the last saved version of currently edited file. 
+" against the last saved version of currently edited file.
 let g:typescript_compiler_binary = 'tsc'
 let g:typescript_compiler_options = ''
-" To make the QuickFix window automatically appear if `:make` has any errors. 
+" To make the QuickFix window automatically appear if `:make` has any errors.
 autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost    l* nested lwindow
 
@@ -121,31 +133,31 @@ autocmd FileType typescript syn clear foldBraces
 " go tagbar - go get -u github.com/jstemmer/gotags |
 " https://github.com/majutsushi/tagbar.git
 let g:tagbar_type_to = {
-	\'ctagstype' : 'go',
-	\ 'kinds' : [
-		\ 'p:package',
-		\ 'i:imports:1',
-		\ 'c:constants',
-		\ 'v:variables',
-		\ 't:types',
-		\ 'n:interfaces',
-		\ 'w:fields',
-		\ 'e:embedded',
-		\ 'm:methods',
-		\ 'r:constructor',
-		\ 'f:functions'
-	\ ],
-	\ 'sro' : '.',
-	\ 'kind2scope' : {
-		\ 't' : 'ctype', 
-		\ 'n' : 'ntype'
-	\ },
-	\ 'scope2kind' : {
-		\ 'ctype' : 't',
-		\ 'ntype' : 'n'
-	\ },
-	\ 'ctagsbin' : 'gotags',
-	\ 'ctagsargs' : '-sort -silent'
+  \'ctagstype' : 'go',
+  \ 'kinds' : [
+    \ 'p:package',
+    \ 'i:imports:1',
+    \ 'c:constants',
+    \ 'v:variables',
+    \ 't:types',
+    \ 'n:interfaces',
+    \ 'w:fields',
+    \ 'e:embedded',
+    \ 'm:methods',
+    \ 'r:constructor',
+    \ 'f:functions'
+  \ ],
+  \ 'sro' : '.',
+  \ 'kind2scope' : {
+    \ 't' : 'ctype',
+    \ 'n' : 'ntype'
+  \ },
+  \ 'scope2kind' : {
+    \ 'ctype' : 't',
+    \ 'ntype' : 'n'
+  \ },
+  \ 'ctagsbin' : 'gotags',
+  \ 'ctagsargs' : '-sort -silent'
 \ }
 
 nmap <F8> :TagbarToggle<CR>
@@ -155,13 +167,13 @@ map <C-n> :NERDTreeToggle<CR>
 
 
 " -------------- TT. Cutomized mapping ---------------------------
-" Remap <ESC> - need to type quickly. 
+" Remap <ESC> - need to type quickly.
 :imap jj <ESC>
 
 
 "-------------- Airline -----------------------------------------
-" In order to display Airline theme, we need Powerline fonts. 
-" Read instruction to install powerline fonts from Airline plugin repo. 
+" In order to display Airline theme, we need Powerline fonts.
+" Read instruction to install powerline fonts from Airline plugin repo.
 set laststatus=2
 " Make sure powerline fonts are used
 let g:airline_powerline_fonts = 1
@@ -200,7 +212,7 @@ let g:javascript_plugin_flow = 1
 " ------------------- End of vim-javascript ---------------------
 
 " ----------- Prettier - An opinionated Javascript Formatter ----
-" To install: `sudo npm install -g prettier` 
+" To install: `sudo npm install -g prettier`
 " Initiate plugin in vimrc
 autocmd FileType javascript set formatprg=prettier\ --stdin
 " format on save
@@ -228,16 +240,17 @@ autocmd FileType typescript syn clear foldBraces
 let g:NERDCompactSexyComs = 1
 
 " Align line-wise comment delimiters flush left instead of following code indentation
-let g:NERDDefaultAlign = 'left'
+" let g:NERDDefaultAlign = 'left'
+let g:NERDDefaultAlign = 1
 
 " Set a language to use its alternate delimiters by default
 let g:NERDAltDelims_java = 1
 
 " Add your own custom formats or override the defaults
-let g:NERDCustomDelimiters = { 
-      \ 'c': { 'left': '/**','right': '*/'  },
-      \ 'typescript': { 'left': '/**', 'right': '*/' }
-      \ }
+      " \ 'typescript': { 'left': '/**', 'right': '*/' }
+" let g:NERDCustomDelimiters = {
+      " \ 'c': { 'left': '/**','right': '*/'  }
+      " \ }
 
 " Allow commenting and inverting empty lines (useful when commenting a region)
 let g:NERDCommentEmptyLines = 1
@@ -249,8 +262,8 @@ let g:NERDTrimTrailingWhitespace = 1
 
 " ---------------------- Vim-multiple-cursors ---------------------
 "  `Ctrl + h` to highlight curren word or highlight part of word then
-"  `Ctrl + h` to highlight next match. `Ctrl + p` to unselect and move 
-"  back to previous one. 
+"  `Ctrl + h` to highlight next match. `Ctrl + p` to unselect and move
+"  back to previous one.
 "  `Ctrl + x` to remove current virtual cursor and skip to next one
 " Remap `Ctrl + n` to `Ctrl + h` to avoid override `Ctrl + n` for NERDTree
 
@@ -268,5 +281,35 @@ let g:multi_cursor_quit_key='<Esc>'
 "
 "  Disable folding
 let g:vim_markdown_folding_disabled = 1
+
+" -------------------------------------------------------------------
+"  --------------------- Vim YCM ------------------------------------
+"  Fix using python3 instead of 2
+let g:ycm_server_python_interpreter = '/usr/bin/python3'
+let g:ycm_python_binary_path = '/usr/bin/python3'
+
+" -------------------------------------------------------------------
+
+" --------------- Custom Config for specific project ----------------
+" Specific configuration for folders that contain `.vim`
+" Ref: https://stackoverflow.com/questions/1889602/
+let b:thisdir=expand("%:p:h")
+let b:vim=b:thisdir."/.vim"
+if (filereadable(b:vim))
+    execute "source ".b:vim
+else 
+  " ----------------------- Vim-codefmt -------------------------------
+  augroup autoformat_settings
+    autocmd FileType bzl AutoFormatBuffer buildifier
+    autocmd FileType c,cpp,proto,javascript,typescript AutoFormatBuffer clang-format
+    autocmd FileType dart AutoFormatBuffer dartfmt
+    autocmd FileType go AutoFormatBuffer gofmt
+    autocmd FileType gn AutoFormatBuffer gn
+    autocmd FileType html,css,json AutoFormatBuffer js-beautify
+    autocmd FileType java AutoFormatBuffer google-java-format
+    autocmd FileType python AutoFormatBuffer yapf
+    " Alternative: autocmd FileType python AutoFormatBuffer autopep8
+  augroup END
+endif
 
 " -------------------------------------------------------------------
