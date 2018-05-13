@@ -1,9 +1,18 @@
 
 " ----- Vim General Settings -------------------------------------
-
 " Vim theming
 "let g:molokai_original = 1
-colorscheme monokai
+" colorscheme monokai
+" colorscheme monochrome
+" colorscheme print_bw
+
+" set bg=light
+" colorscheme minimal
+colorscheme nofrils-light
+"
+" Set vim_airline_theme at airline_theme section let g:airline_theme = 'pencil'
+" let g:pencil_terminal_italics = 1
+" colorscheme pencil
 
 " To print hardcopy with line numbers
 set printoptions=number:y
@@ -29,6 +38,11 @@ set expandtab
 
 set number
 
+" Set path variable to current directory for search files in current project
+" To search: ':find <full-file-name-including-extension'>
+" http://vim.wikia.com/wiki/Project_browsing_using_find
+set path=$PWD/**
+
 " Markdown syntax for *.md (Vim default setting just for README.md)
 augroup markdown
 
@@ -47,6 +61,9 @@ augroup END
 " |--------------- Mapping -----------------------------------
     imap jj <ESC>
     let mapleader = ","
+    " Shortcut to `GoToDefinition` using YouCompleteMe plugin
+    " To do: type `,gd`
+    nnoremap <leader>gd :YcmCompleter GoToDefinition<CR>
 " |----------------/mapping ----------------------------------
 
 " |------------------------------------------------------------
@@ -181,7 +198,9 @@ if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 "let g:airline_symbols.space = "\ua0"
-let g:airline_theme="tomorrow"
+" let g:airline_theme="tomorrow"
+" let g:airline_theme = 'pencil'
+let g:airline_theme = 'papercolor'
 let g:airline#extensions#tabline#enabled = 1 "enable the tabline
 let g:airline#extensions#tabline#fnamemod = ':t' " show just the filename of buffers in the tab line
 let g:airline_detect_modified=1
@@ -288,6 +307,12 @@ let g:vim_markdown_folding_disabled = 1
 let g:ycm_server_python_interpreter = '/usr/bin/python3'
 let g:ycm_python_binary_path = '/usr/bin/python3'
 
+" Map subcommands
+nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
+" nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>gg :YcmCompleter GoToDefinition<CR>
+" nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
 " -------------------------------------------------------------------
 
 " --------------- Custom Config for specific project ----------------
@@ -313,3 +338,11 @@ else
 endif
 
 " -------------------------------------------------------------------
+
+" ----------------- Color Scheme to Print Back and White ------------
+"  Ref: http://www.eandem.co.uk/mrw/vim/colorschemes/index.html#print_bw
+" Make sure save file `print_bw` to `color` folder
+" To print: 
+" 1. Run `:colorscheme print_bw`; 
+" 2. `:hardcopy > PATH_TO_OUTPUT/NAME.pdf`
+" ------------------------------------------------------------------
