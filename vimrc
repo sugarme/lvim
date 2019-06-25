@@ -1,18 +1,17 @@
 
 " ----- Vim General Settings -------------------------------------
 " Vim theming
-"let g:molokai_original = 1
-" colorscheme monokai
+let g:molokai_original = 1
+colorscheme monokai
 " colorscheme monochrome
 " colorscheme print_bw
 
 " set bg=light
 " colorscheme minimal
-colorscheme nofrils-light
+" colorscheme nofrils-light
 "
 " Set vim_airline_theme at airline_theme section let g:airline_theme = 'pencil'
-" let g:pencil_terminal_italics = 1
-" colorscheme pencil
+" let g:pencil_terminal_italics = 1 " colorscheme pencil
 
 " To print hardcopy with line numbers
 set printoptions=number:y
@@ -57,13 +56,16 @@ augroup markdown
 
 augroup END
 
-
 " |--------------- Mapping -----------------------------------
     imap jj <ESC>
     let mapleader = ","
     " Shortcut to `GoToDefinition` using YouCompleteMe plugin
     " To do: type `,gd`
     nnoremap <leader>gd :YcmCompleter GoToDefinition<CR>
+
+    "map to run python from Vim by press F9 for python2 and F10 for python3
+    nnoremap <F9> :echo system('python2 "' . expand('%') . '"')<cr>
+    nnoremap <F10> :echo system('python3 "' . expand('%') . '"')<cr>
 " |----------------/mapping ----------------------------------
 
 " |------------------------------------------------------------
@@ -127,6 +129,11 @@ Glaive codefmt plugin[mappings]
 
 " ---------------- Vim-go plugin ------------------------
 let g:go_disable_autoinstall = 0
+let g:go_fmt_autosave = 0 " disable fmt when saving
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
+let g:go_null_module_warning = 0 " disable warning when not using go module
+" let g:go_fold_enable = []
 
 " ----------------End of vim-go ------------------------
 
