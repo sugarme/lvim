@@ -1,14 +1,14 @@
 
 " ----- Vim General Settings -------------------------------------
 " Vim theming
-let g:molokai_original = 1
-colorscheme monokai
+" let g:molokai_original = 1
+" colorscheme monokai
 " colorscheme monochrome
 " colorscheme print_bw
 
 " set bg=light
 " colorscheme minimal
-" colorscheme nofrils-light
+colorscheme nofrils-light
 "
 " Set vim_airline_theme at airline_theme section let g:airline_theme = 'pencil'
 " let g:pencil_terminal_italics = 1 " colorscheme pencil
