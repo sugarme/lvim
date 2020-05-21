@@ -62,6 +62,7 @@ augroup END
     " Shortcut to `GoToDefinition` using YouCompleteMe plugin
     " To do: type `,gd`
     nnoremap <leader>gd :YcmCompleter GoToDefinition<CR>
+    nnoremap <Leader>gg :YcmCompleter GoTo<CR>
 
     "map to run python from Vim by press F9 for python2 and F10 for python3
     nnoremap <F9> :echo system('python2 "' . expand('%') . '"')<cr>
@@ -112,6 +113,12 @@ call vundle#begin()
     Plugin 'google/vim-maktaba'
     Plugin 'google/vim-codefmt'
     Plugin 'google/vim-glaive'
+    Plugin 'jmcantrell/vim-virtualenv'
+    " Rust vim: https://github.com/rust-lang/rust.vim
+    Plugin 'rust-lang/rust.vim'
+    Plugin 'racer-rust/vim-racer'
+
+    Plugin 'ocaml/vim-ocaml'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -310,17 +317,45 @@ let g:vim_markdown_folding_disabled = 1
 
 " -------------------------------------------------------------------
 "  --------------------- Vim YCM ------------------------------------
+"  auto close the preview window
+let g:ycm_autoclose_preview_window_after_completion = 1
+" auto close preview window when escaping insert mode
+let g:ycm_autoclose_preview_window_after_insertion = 1
 "  Fix using python3 instead of 2
 let g:ycm_server_python_interpreter = '/usr/bin/python3'
 let g:ycm_python_binary_path = '/usr/bin/python3'
+let g:ycm_rust_src_path = '/home/sugarme/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
 
 " Map subcommands
 nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
 " nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
-nnoremap <leader>gg :YcmCompleter GoToDefinition<CR>
+" nnoremap <leader>gg :YcmCompleter GoToDefinition<CR>
 " nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <Leader>gt :YcmCompleter GoTo<CR>
 
 " -------------------------------------------------------------------
+
+
+"--------------------------Rust Vim ---------------------------------
+" Rust formatter - automatically when saving buf
+" let g:rustfmt_autosave = 1
+"--------------------------------------------------------------------
+
+"--------------------------Vim Racer ---------------------------------
+" set hidden
+" let g:racer_cmd = "/home/user/.cargo/bin/racer"
+" let g:racer_experimental_completer = 1
+" let g:racer_insert_paren = 1
+" augroup Racer
+    " autocmd!
+    " autocmd FileType rust nmap <buffer> gd         <Plug>(rust-def)
+    " autocmd FileType rust nmap <buffer> gs         <Plug>(rust-def-split)
+    " autocmd FileType rust nmap <buffer> gx         <Plug>(rust-def-vertical)
+    " autocmd FileType rust nmap <buffer> gt         <Plug>(rust-def-tab)
+    " autocmd FileType rust nmap <buffer> <leader>gd <Plug>(rust-doc)
+" augroup END
+
+"--------------------------------------------------------------------
 
 " --------------- Custom Config for specific project ----------------
 " Specific configuration for folders that contain `.vim`
@@ -339,7 +374,8 @@ else
     autocmd FileType gn AutoFormatBuffer gn
     autocmd FileType html,css,json AutoFormatBuffer js-beautify
     autocmd FileType java AutoFormatBuffer google-java-format
-    autocmd FileType python AutoFormatBuffer yapf
+    autocmd FileType python3 AutoFormatBuffer yapf " use python 3 for yapf to format
+    autocmd FileType rust AutoFormatBuffer rustfmt
     " Alternative: autocmd FileType python AutoFormatBuffer autopep8
   augroup END
 endif
