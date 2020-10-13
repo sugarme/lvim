@@ -1,11 +1,12 @@
 
 " ----- Vim General Settings -------------------------------------
+
 " Vim theming
 " let g:molokai_original = 1
 " colorscheme monokai
 " colorscheme monochrome
 " colorscheme print_bw
-
+"
 " set bg=light
 " colorscheme minimal
 colorscheme nofrils-light
@@ -87,7 +88,6 @@ call vundle#begin()
     Plugin 'Quramy/vim-js-pretty-template'
     Plugin 'alvan/vim-closetag'
     Plugin 'itchyny/lightline.vim'
-    " Plugin 'shougo/neocomplete.vim'
     Plugin 'Valloric/YouCompleteMe'
     Plugin 'scrooloose/nerdtree'
     Plugin 'majutsushi/tagbar'
@@ -114,10 +114,8 @@ call vundle#begin()
     Plugin 'google/vim-codefmt'
     Plugin 'google/vim-glaive'
     Plugin 'jmcantrell/vim-virtualenv'
-    " Rust vim: https://github.com/rust-lang/rust.vim
     Plugin 'rust-lang/rust.vim'
     Plugin 'racer-rust/vim-racer'
-
     Plugin 'ocaml/vim-ocaml'
 
 " All of your Plugins must be added before the following line
@@ -131,7 +129,6 @@ syntax on                    " required
 call glaive#Install()
 " Optional: Enable codefmt's default mappings on the <Leader>= prefix.
 Glaive codefmt plugin[mappings]
-" Glaive codefmt google_java_executable="java -jar /path/to/google-java-format-VERSION-all-deps.jar"
 " -------------------------------------------------------------------
 
 " ---------------- Vim-go plugin ------------------------
@@ -140,7 +137,6 @@ let g:go_fmt_autosave = 0 " disable fmt when saving
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
 let g:go_null_module_warning = 0 " disable warning when not using go module
-" let g:go_fold_enable = []
 
 " ----------------End of vim-go ------------------------
 
@@ -335,28 +331,6 @@ nnoremap <Leader>gt :YcmCompleter GoTo<CR>
 
 " -------------------------------------------------------------------
 
-
-"--------------------------Rust Vim ---------------------------------
-" Rust formatter - automatically when saving buf
-" let g:rustfmt_autosave = 1
-"--------------------------------------------------------------------
-
-"--------------------------Vim Racer ---------------------------------
-" set hidden
-" let g:racer_cmd = "/home/user/.cargo/bin/racer"
-" let g:racer_experimental_completer = 1
-" let g:racer_insert_paren = 1
-" augroup Racer
-    " autocmd!
-    " autocmd FileType rust nmap <buffer> gd         <Plug>(rust-def)
-    " autocmd FileType rust nmap <buffer> gs         <Plug>(rust-def-split)
-    " autocmd FileType rust nmap <buffer> gx         <Plug>(rust-def-vertical)
-    " autocmd FileType rust nmap <buffer> gt         <Plug>(rust-def-tab)
-    " autocmd FileType rust nmap <buffer> <leader>gd <Plug>(rust-doc)
-" augroup END
-
-"--------------------------------------------------------------------
-
 " --------------- Custom Config for specific project ----------------
 " Specific configuration for folders that contain `.vim`
 " Ref: https://stackoverflow.com/questions/1889602/
@@ -389,3 +363,4 @@ endif
 " 1. Run `:colorscheme print_bw`; 
 " 2. `:hardcopy > PATH_TO_OUTPUT/NAME.pdf`
 " ------------------------------------------------------------------
+"
